@@ -1,0 +1,2 @@
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/lib/site_perl/5.26.2/XML/NamespaceSupport.pm relocate_as=../../../../XML/NamespaceSupport.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/man/man3/XML::NamespaceSupport.3 relocate_as=../../../../../../../man/man3/XML::NamespaceSupport.3

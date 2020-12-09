@@ -1,0 +1,4 @@
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/XML/Simple.pm relocate_as=../../../../XML/Simple.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/XML/Simple/FAQ.pod relocate_as=../../../../XML/Simple/FAQ.pod
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/XML::Simple.3 relocate_as=../../../../../../../man/man3/XML::Simple.3
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/XML::Simple::FAQ.3 relocate_as=../../../../../../../man/man3/XML::Simple::FAQ.3

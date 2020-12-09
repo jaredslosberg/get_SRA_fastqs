@@ -1,0 +1,2 @@
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/lib/site_perl/5.26.2/x86_64-linux-thread-multi/XSLoader.pm relocate_as=../../XSLoader.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/man/man3/XSLoader.3 relocate_as=../../../../../../man/man3/XSLoader.3

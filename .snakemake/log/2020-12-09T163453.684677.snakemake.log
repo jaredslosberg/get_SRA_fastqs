@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	get_SRA
+	1
+
+[Wed Dec  9 16:34:53 2020]
+rule get_SRA:
+    input: SRP258962_out/SRP258962_accession_list.txt
+    output: logs/SRP258962_test.log
+    log: logs/SRP258962_test.log
+    jobid: 0
+    wildcards: project_accession=SRP258962
+
+[Wed Dec  9 16:34:53 2020]
+Error in rule get_SRA:
+    jobid: 0
+    output: logs/SRP258962_test.log
+    log: logs/SRP258962_test.log (check log file(s) for error message)
+
+RuleException:
+ValueError in line 31 of /home/jared/workflows/get_SRP_fastqs/Snakefile:
+Unsupported script: Expecting either Python (.py), R (.R), RMarkdown (.Rmd) or Julia (.jl) script.
+  File "/home/jared/anaconda3/envs/snakemake/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2189, in run_wrapper
+  File "/home/jared/workflows/get_SRP_fastqs/Snakefile", line 31, in __rule_get_SRA
+  File "/home/jared/anaconda3/envs/snakemake/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 529, in _callback
+  File "/home/jared/anaconda3/envs/snakemake/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/jared/anaconda3/envs/snakemake/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 515, in cached_or_run
+  File "/home/jared/anaconda3/envs/snakemake/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2201, in run_wrapper
+Removing output files of failed job get_SRA since they might be corrupted:
+logs/SRP258962_test.log
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/jared/workflows/get_SRP_fastqs/.snakemake/log/2020-12-09T163453.684677.snakemake.log

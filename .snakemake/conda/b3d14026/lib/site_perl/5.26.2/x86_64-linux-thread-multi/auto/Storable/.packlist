@@ -1,0 +1,3 @@
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/lib/site_perl/5.26.2/x86_64-linux-thread-multi/Storable.pm relocate_as=../../Storable.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/lib/site_perl/5.26.2/x86_64-linux-thread-multi/auto/Storable/Storable.so relocate_as=Storable.so
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/man/man3/Storable.3 relocate_as=../../../../../../man/man3/Storable.3

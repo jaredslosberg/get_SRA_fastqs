@@ -1,0 +1,5 @@
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/x86_64-linux-thread-multi/MIME/Base64.pm relocate_as=../../../MIME/Base64.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/x86_64-linux-thread-multi/MIME/QuotedPrint.pm relocate_as=../../../MIME/QuotedPrint.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/x86_64-linux-thread-multi/auto/MIME/Base64/Base64.so relocate_as=Base64.so
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/MIME::Base64.3 relocate_as=../../../../../../../man/man3/MIME::Base64.3
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/MIME::QuotedPrint.3 relocate_as=../../../../../../../man/man3/MIME::QuotedPrint.3

@@ -1,0 +1,4 @@
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/lib/site_perl/5.26.2/Exporter.pm relocate_as=../../../Exporter.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/lib/site_perl/5.26.2/Exporter/Heavy.pm relocate_as=../../../Exporter/Heavy.pm
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/man/man3/Exporter.3 relocate_as=../../../../../../man/man3/Exporter.3
+/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/man/man3/Exporter::Heavy.3 relocate_as=../../../../../../man/man3/Exporter::Heavy.3

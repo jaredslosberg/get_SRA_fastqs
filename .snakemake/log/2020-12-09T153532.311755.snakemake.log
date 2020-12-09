@@ -1,0 +1,2 @@
+SyntaxError in line 7 of /home/jared/workflows/get_SRP_fastqs/Snakefile:
+EOF in multi-line string (Snakefile, line 7)

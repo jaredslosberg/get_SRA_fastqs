@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job counts:
+	count	jobs
+	1	get_metadata
+	1
+
+[Wed Dec  9 16:20:51 2020]
+rule get_metadata:
+    output: SRP258962_out/SRP258962_runinfo.csv, {project_accession)_out/SRP258962_accession_list.txt
+    jobid: 0
+    wildcards: project_accession=SRP258962
+
+[Wed Dec  9 16:20:52 2020]
+Error in rule get_metadata:
+    jobid: 0
+    output: SRP258962_out/SRP258962_runinfo.csv, {project_accession)_out/SRP258962_accession_list.txt
+    shell:
+        
+		cd SRP258962_out/ 
+
+                #Grabs meta data, fetches in table format, and saves to csv
+                esearch -db sra -query 'SRP258962' |efetch -format runinfo > SRP258962_runinfo.csv"
+
+                #same thing, but save only SRRs, one per line, to use with prefetch or fasterqdump
+                #First column (-f1) holds SRRs, delim is ",", egrep gets rid of the heading and returns just SRRs
+#		esearch -db sra -query 'SRP258962' | efetch -format runinfo | cut -f1 -d, #| egrep 'SRR' > SRP258962_accession_list.txt"
+
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/jared/workflows/get_SRP_fastqs/.snakemake/log/2020-12-09T162051.741303.snakemake.log

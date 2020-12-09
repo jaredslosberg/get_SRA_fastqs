@@ -1,0 +1,23 @@
+Building DAG of jobs...
+Creating conda environment config/get_SRP.yaml...
+Downloading and installing remote packages.
+Environment for config/get_SRP.yaml created (location: .snakemake/conda/b3d14026)
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_metadata
+	1
+
+[Wed Dec  9 13:27:46 2020]
+rule get_metadata:
+    output: metadata/SRP258962_runinfo.csv
+    jobid: 0
+    wildcards: project_accession=SRP258962
+
+Activating conda environment: /home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026
+[Wed Dec  9 13:27:49 2020]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/jared/workflows/get_SRP_fastqs/.snakemake/log/2020-12-09T132730.424751.snakemake.log

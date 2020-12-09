@@ -1,0 +1,11 @@
+prefix=/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${libdir}
+includedir=/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/b3d14026/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.3
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}
