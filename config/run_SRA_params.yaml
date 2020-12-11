@@ -1,0 +1,5 @@
+fastq_out_dir:
+        /home/jared/workflows/get_SRP_fastqs/test/
+fasterq_flags:
+        --include-technical
+

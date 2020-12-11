@@ -1,2 +1,0 @@
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/XML/SAX/Expat.pm relocate_as=../../../../../XML/SAX/Expat.pm
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/XML::SAX::Expat.3 relocate_as=../../../../../../../../man/man3/XML::SAX::Expat.3

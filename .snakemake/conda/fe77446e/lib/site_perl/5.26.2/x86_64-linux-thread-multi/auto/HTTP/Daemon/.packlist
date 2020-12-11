@@ -1,2 +1,0 @@
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/HTTP/Daemon.pm relocate_as=../../../../HTTP/Daemon.pm
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/HTTP::Daemon.3 relocate_as=../../../../../../../man/man3/HTTP::Daemon.3

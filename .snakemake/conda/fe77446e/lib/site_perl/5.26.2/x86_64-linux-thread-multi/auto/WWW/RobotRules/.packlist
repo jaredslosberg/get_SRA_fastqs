@@ -1,4 +1,0 @@
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/WWW/RobotRules.pm relocate_as=../../../../WWW/RobotRules.pm
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/WWW/RobotRules/AnyDBM_File.pm relocate_as=../../../../WWW/RobotRules/AnyDBM_File.pm
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/WWW::RobotRules.3 relocate_as=../../../../../../../man/man3/WWW::RobotRules.3
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/WWW::RobotRules::AnyDBM_File.3 relocate_as=../../../../../../../man/man3/WWW::RobotRules::AnyDBM_File.3

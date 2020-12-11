@@ -1,3 +1,0 @@
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/x86_64-linux-thread-multi/Socket.pm relocate_as=../../Socket.pm
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/x86_64-linux-thread-multi/auto/Socket/Socket.so relocate_as=Socket.so
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/Socket.3 relocate_as=../../../../../../man/man3/Socket.3

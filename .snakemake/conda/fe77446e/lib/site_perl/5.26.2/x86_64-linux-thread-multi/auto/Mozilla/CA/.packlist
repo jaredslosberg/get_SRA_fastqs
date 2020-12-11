@@ -1,4 +1,0 @@
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/Mozilla/CA.pm relocate_as=../../../../Mozilla/CA.pm
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/Mozilla/CA/cacert.pem relocate_as=../../../../Mozilla/CA/cacert.pem
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/lib/site_perl/5.26.2/Mozilla/mk-ca-bundle.pl relocate_as=../../../../Mozilla/mk-ca-bundle.pl
-/home/jared/workflows/get_SRP_fastqs/.snakemake/conda/fe77446e/man/man3/Mozilla::CA.3 relocate_as=../../../../../../../man/man3/Mozilla::CA.3

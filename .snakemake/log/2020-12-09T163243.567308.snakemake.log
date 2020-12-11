@@ -1,4 +1,0 @@
-Building DAG of jobs...
-WildcardError in line 23 of /home/jared/workflows/get_SRP_fastqs/Snakefile:
-Wildcards in input files cannot be determined from output files:
-'project_accession'
