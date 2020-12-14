@@ -1,5 +1,10 @@
+THREADS:
+        16
 fastq_out_dir:
-        /home/jared/workflows/get_SRP_fastqs/test/
+        /mnt/morbo/Data/Public/Marklund_ENS/raw/
 fasterq_flags:
+        --split-files
         --include-technical
+        -t /scratch/users/jared/sra_tmp
+        -e 16
 

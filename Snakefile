@@ -1,49 +1,89 @@
 configfile:
 	"config/run_SRA_params.yaml"
 
-rule get_metadata:
+#def getExperimentAccessions(wildcards):
+#	exp_accessions = list()
+#	for s in os.listdir(wildcards.project_accession+"_out/"):
+#		if s.startswith("SRX"):
+#			exp_accessions.append(s)
+#	return exp_accessions
+	
+rule get_experiment_run_list:
 	input:
 	output:
-		"{project_accession}_out/{project_accession}_runinfo.csv",
-		"{project_accession}_out/{project_accession}_accession_list.txt"
+		run_accession_list="output/{project_accession}/{experiment_accession}/run_accession_list.txt"
+	conda:
+		"config/get_SRP.yaml"
+	shell:
+		"""		
+		#Given a experiment SRX accession number, get SRR runs that make up that experiment
+		#Create a directory for each experiment to store fastqs
+		esearch -db sra -query {wildcards.experiment_accession} | efetch -mode xml | \
+			xpath -q -e '//EXPERIMENT/@accession' | cut -d'"' -f2 > \
+			{output.run_accession_list}
+	
+		awk '{{print  "output/"$0"_dir"}}' {output.experiment_accession_list} > tmp_appended_experiment_accessions.txt
+
+	
+		xargs -d '\n' mkdir -p < tmp_appended_experiment_accessions.txt 
+		"""
+
+rule get_exp:
+	input:
+		"{project_accession}_out/{project_accession}_experiment_accession_list.txt",
+		
+	params:
+	output:
+		"{project_accession}_test.txt"
+	shell:
+		"printf {params.exp} > {wildcards.project_accession}_test.txt"
+
+
+rule get_experiment_metadata:
+	input:
+	output:
+		#Actual accession list
+		run_accession_list="output/{project_accession}/{experiment_accession}/{experiment_accession}_run_accession_list.txt"
+	params:
 	conda:
         	"config/get_SRP.yaml"
 	shell:
 		"""
-		cd {wildcards.project_accession}_out/ 
+		mkdir -p  output/{wildcards.project_accession}/{wildcards.experiment_accession}/ 
 
                 #Grabs meta data, fetches in table format, and saves to csv
-                esearch -db sra -query '{wildcards.project_accession}' |efetch -format runinfo \
-> {wildcards.project_accession}_runinfo.csv
+                esearch -db sra -query '{wildcards.experiment_accession}' |efetch -format runinfo \
+			> {output.run_accession_list}
 
-                #same thing, but save only SRRs, one per line, to use with prefetch or fasterqdump
+                #same thing, but save only SRRs, one per line, to use with nstall -c bioconda perl-xml-xpathpprefetch or fasterqdump
                 #First column (-f1) holds SRRs, delim is ",", egrep gets rid of the heading and returns just SRRs
-		esearch -db sra -query '{wildcards.project_accession}' | efetch -format runinfo | cut -f1 -d, \
-| egrep 'SRR' > {wildcards.project_accession}_accession_list.txt
+		esearch -db sra -query '{wildcards.experiment_accession}' | efetch -format runinfo | cut -f1 -d, \
+			| egrep 'SRR' > {output.run_accession_list}
 
 		"""
 
 rule get_SRA:
 	input:
-		"{project_accession}_out/{project_accession}_accession_list.txt"
+		run_accession_list="output/{project_accession}/{experiment_accession}/{experiment_accession}_run_accession_list.txt"
 	output:
-		"{project_accession}_out/{project_accession}_status.txt"
+		status="output/{project_accession}/{experiment_accession}/{experiment_accession}_status.txt"
 	params:
 		fastq_out_dir=config["fastq_out_dir"],
 		fasterq_flags=config["fasterq_flags"]
+	threads:
+		config["THREADS"]
 	conda:
 		"config/get_SRP.yaml"
 	log:
-		"logs/{project_accession}_test.log"
+		"logs/{project_accession}/{experiment_accession}_test.log"
 	shell:
 		"""
-		pwd > {log}
-		cd {wildcards.project_accession}_out/
+		
 
 		#Use this section if you want to use prefetch and validate the downloads. Necessary with
 		#fastq dump but not neccesary with fasterq-dump
 		#prefetch SRR6854061
-		#xargs -l prefetch < {wildcards.project_accession}_accession_list.txt
+		#xargs -l prefetch < {input.run_accession_list}
 		#point to correct directory and append ".sra" to each argument
 		#TODO: Where does prefetch download to, when installed from conda?
 		#cd /home/jared/tmp_sra_home/sra/
@@ -56,10 +96,13 @@ rule get_SRA:
 		#xargs operates on each line with "-l"
 		#-I appends a unique "1" or "2" to pairs
 		#-O output directory, -t temp directory
-		xargs -l fasterq-dump -O {params.fastq_out_dir} {params.fasterq_flags} \
-< {wildcards.project_accession}_accession_list.txt
+		##Tags project accession and exp accession to general fastq location, to be processed togther
+		cat {input.run_accession_list} | xargs -l fasterq-dump {params.fasterq_flags} \
+-O {params.fastq_out_dir}/{wildcards.project_accession}/{wildcards.experiment_accession} \
+2> {log}
 
-		echo 'Some informative message here' > {wildcards.project_accession}_status.txt
+		echo 'fastqs for {wildcards.experiment_accession} were obtained on:' > {output.status}
+		date >> {output.status}
 
 		#Clear tmp .sra files
 		#rm /home/jared/tmp_sra_home/sra/*.sra*
