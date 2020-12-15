@@ -83,12 +83,15 @@ rule get_SRA:
 		#Use this section if you want to use prefetch and validate the downloads. Necessary with
 		#fastq dump but not neccesary with fasterq-dump
 		#prefetch SRR6854061
-		#xargs -l prefetch < {input.run_accession_list}
+		cat {input.run_accession_list} | while IFS= read -r run_accession; do
+            		prefetch $run_accession && fasterq-dump $run_accession {params.fasterq_flags} \
+				-O {params.fastq_out_dir}/{wildcards.project_accession}/{wildcards.experiment_accession}
+			done > {log} 2>&1
+			#cat {input.run_accession_list} | xargs -l prefetch > {log}
 		#point to correct directory and append ".sra" to each argument
 		#TODO: Where does prefetch download to, when installed from conda?
-		#cd /home/jared/tmp_sra_home/sra/
-		#awk '{{print $0".sra"}}' /home/jared/projects/SRA/Vandy_ENS/SRP268705_Acc_List.txt > \
-		#       /home/jared/projects/SRA/Vandy_ENS/tmpSRA.txt
+		#sra_dir="/scratch/users/jared/sra_tmp/"
+		#awk '{{print $0".sra"}}' {input.run_accession_list} > outputrun_accession_list
 		#xargs -l vdb-validate < /home/jared/projects/SRA/Vandy_ENS/tmpSRA.txt
 
 		#feeds each line of SRR accession numbers list to fasterq command
@@ -96,10 +99,10 @@ rule get_SRA:
 		#xargs operates on each line with "-l"
 		#-I appends a unique "1" or "2" to pairs
 		#-O output directory, -t temp directory
-		##Tags project accession and exp accession to general fastq location, to be processed togther
-		cat {input.run_accession_list} | xargs -l fasterq-dump {params.fasterq_flags} \
--O {params.fastq_out_dir}/{wildcards.project_accession}/{wildcards.experiment_accession} \
-2> {log}
+		##Tags project accession and exp accession to general fastq location, to be processed togtherr
+#		cat {input.run_accession_list} | xargs -l fasterq-dump {params.fasterq_flags} \
+#-O {params.fastq_out_dir}/{wildcards.project_accession}/{wildcards.experiment_accession} \
+#2> {log}
 
 		echo 'fastqs for {wildcards.experiment_accession} were obtained on:' > {output.status}
 		date >> {output.status}
