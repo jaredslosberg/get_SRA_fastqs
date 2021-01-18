@@ -1,13 +1,9 @@
+
+#configuration file with output directories, number of threads to use, arguments for fasterq-dump
 configfile:
 	"config/run_SRA_params.yaml"
 
-#def getExperimentAccessions(wildcards):
-#	exp_accessions = list()
-#	for s in os.listdir(wildcards.project_accession+"_out/"):
-#		if s.startswith("SRX"):
-#			exp_accessions.append(s)
-#	return exp_accessions
-	
+#For each SRX experiment, create a list of each SRR run to be downloaded	
 rule get_experiment_run_list:
 	input:
 	output:
@@ -27,7 +23,7 @@ rule get_experiment_run_list:
 	
 		xargs -d '\n' mkdir -p < tmp_appended_experiment_accessions.txt 
 		"""
-
+#get the SRX metadata (sequence types, samples, ...)
 rule get_experiment_metadata:
 	input:
 	output:
@@ -52,6 +48,7 @@ rule get_experiment_metadata:
 
 		"""
 
+#actually call fasterq-dump which will download the fastqs for each SRR run, organized into directories for the SRP project and SRX experiment
 rule get_SRA:
 	input:
 		run_accession_list="output/{project_accession}/{experiment_accession}/{experiment_accession}_run_accession_list.txt"
@@ -77,12 +74,6 @@ rule get_SRA:
             		prefetch $run_accession && fasterq-dump $run_accession {params.fasterq_flags} \
 				-O {params.fastq_out_dir}/{wildcards.project_accession}/{wildcards.experiment_accession}
 			done > {log} 2>&1
-			#cat {input.run_accession_list} | xargs -l prefetch > {log}
-		#point to correct directory and append ".sra" to each argument
-		#TODO: Where does prefetch download to, when installed from conda?
-		#sra_dir="/scratch/users/jared/sra_tmp/"
-		#awk '{{print $0".sra"}}' {input.run_accession_list} > outputrun_accession_list
-		#xargs -l vdb-validate < /home/jared/projects/SRA/Vandy_ENS/tmpSRA.txt
 
 		#feeds each line of SRR accession numbers list to fasterq command
 		#flags: --split-files separates paired reads
@@ -97,6 +88,4 @@ rule get_SRA:
 		echo 'fastqs for {wildcards.experiment_accession} were obtained on:' > {output.status}
 		date >> {output.status}
 
-		#Clear tmp .sra files
-		#rm /home/jared/tmp_sra_home/sra/*.sra*
 		"""

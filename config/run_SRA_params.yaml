@@ -1,9 +1,14 @@
 THREADS:
         16
+        #directory to be written out to        
+
 fastq_out_dir:
         /mnt/morbo/Data/Public/Marklund_ENS/raw/
+
 metadata_out_dir:
         /mnt/morbo/Data/Public/Marklund_ENS/metadata
+
+        #flags for fasterq-dump. Writes temp files which take a large memory, so put that into scratch space. -e is threads. --split-files separates R1 R2 and index to separate files
 fasterq_flags:
         --split-files
         --include-technical
