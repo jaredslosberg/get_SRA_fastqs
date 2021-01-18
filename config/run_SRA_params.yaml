@@ -2,6 +2,8 @@ THREADS:
         16
 fastq_out_dir:
         /mnt/morbo/Data/Public/Marklund_ENS/raw/
+metadata_out_dir:
+        /mnt/morbo/Data/Public/Marklund_ENS/metadata
 fasterq_flags:
         --split-files
         --include-technical

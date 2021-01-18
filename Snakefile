@@ -13,7 +13,7 @@ rule get_experiment_run_list:
 	output:
 		run_accession_list="output/{project_accession}/{experiment_accession}/run_accession_list.txt"
 	conda:
-		"config/get_SRP.yaml"
+		"config/SRA_workflow.yaml"
 	shell:
 		"""		
 		#Given a experiment SRX accession number, get SRR runs that make up that experiment
@@ -28,32 +28,22 @@ rule get_experiment_run_list:
 		xargs -d '\n' mkdir -p < tmp_appended_experiment_accessions.txt 
 		"""
 
-rule get_exp:
-	input:
-		"{project_accession}_out/{project_accession}_experiment_accession_list.txt",
-		
-	params:
-	output:
-		"{project_accession}_test.txt"
-	shell:
-		"printf {params.exp} > {wildcards.project_accession}_test.txt"
-
-
 rule get_experiment_metadata:
 	input:
 	output:
 		#Actual accession list
 		run_accession_list="output/{project_accession}/{experiment_accession}/{experiment_accession}_run_accession_list.txt"
 	params:
+		metadata_out_dir=config["metadata_out_dir"]
 	conda:
-        	"config/get_SRP.yaml"
+        	"config/SRA_workflow.yaml"
 	shell:
 		"""
 		mkdir -p  output/{wildcards.project_accession}/{wildcards.experiment_accession}/ 
 
                 #Grabs meta data, fetches in table format, and saves to csv
                 esearch -db sra -query '{wildcards.experiment_accession}' |efetch -format runinfo \
-			> {output.run_accession_list}
+			> {params.metadata_out_dir}
 
                 #same thing, but save only SRRs, one per line, to use with nstall -c bioconda perl-xml-xpathpprefetch or fasterqdump
                 #First column (-f1) holds SRRs, delim is ",", egrep gets rid of the heading and returns just SRRs
@@ -73,7 +63,7 @@ rule get_SRA:
 	threads:
 		config["THREADS"]
 	conda:
-		"config/get_SRP.yaml"
+		"config/SRA_workflow.yaml"
 	log:
 		"logs/{project_accession}/{experiment_accession}_test.log"
 	shell:

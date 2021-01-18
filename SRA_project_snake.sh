@@ -2,6 +2,7 @@
 #Here, before calling snakemake, provide an SRA project accession, grab the experiment accessions, and call snakemake for each
 
 #will need conda env with snakemake esearch xpath
+#run this script within conda environment- e.g. conda activate SRA_workflow
 
 sra_project_accession=$1
 

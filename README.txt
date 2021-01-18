@@ -16,6 +16,12 @@ Test in isolated (singularity) environment
 Where does prefetch go
 Write metadata and fastqs to same location
 
+
+First time running:
+#will create conda environment to call snakemake helper scripts with
+$ bash ./scripts/config.sh
+#may need to configure (https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration)
+
 Call SRA_project_snake with:
 $ bash SRA_project_snake.sh [SRP-accession-id]
 
