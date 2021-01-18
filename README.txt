@@ -1,7 +1,5 @@
 Snakemake workflow to go from NCBI accessions to fastqs.
 
-Maybe a worse version of https://bioconductor.org/packages/devel/bioc/vignettes/SRAdb/inst/doc/SRAdb.pdf
-
 Input: could be SRR, SRX, or SRP ids
 	-recommended to be SRP ids, directories are named based on this
 note: smallest resolution that can be returned is SRX. if a SRR is input, it will grab metadata and fastqs for the entire SRX it resides in
