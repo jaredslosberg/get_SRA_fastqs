@@ -39,7 +39,7 @@ rule get_experiment_metadata:
 
                 #Grabs meta data, fetches in table format, and saves to csv
                 esearch -db sra -query '{wildcards.experiment_accession}' |efetch -format runinfo \
-			> {params.metadata_out_dir}
+			> {params.metadata_out_dir}/run_metadata.csv
 
                 #same thing, but save only SRRs, one per line, to use with nstall -c bioconda perl-xml-xpathpprefetch or fasterqdump
                 #First column (-f1) holds SRRs, delim is ",", egrep gets rid of the heading and returns just SRRs
