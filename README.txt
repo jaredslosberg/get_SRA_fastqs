@@ -1,3 +1,5 @@
+WARNING: in development
+
 Snakemake workflow to go from NCBI accessions to fastqs.
 
 Input: could be SRR, SRX, or SRP ids
